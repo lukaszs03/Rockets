@@ -1,12 +1,5 @@
-from rocket import Rocket
-from random import randint
+from rocket import RocketBoard
 
-rockets = [Rocket(randint(1, 6)) for _ in range(5)]
+board = RocketBoard(2)
 
-for _ in range(10):
-    rocketIndexToMove = randint(0, len(rockets) - 1)
-    rockets[rocketIndexToMove].move_up()
-
-
-for rocket in rockets:
-    print(rocket)
+print(board.rockets[0].altitude)
