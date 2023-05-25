@@ -37,7 +37,24 @@ class RocketBoard:
         self.rockets[key].altitude = value
 
     @staticmethod
-    def get_distance(rocket1, rocket2):
-        ab = (rocket1.altitude - rocket2.altitude) ** 2
-        bc = (rocket1.x - rocket2.x) ** 2
+    def get_distance(obj1: Rocket, obj2: Rocket) -> float:
+        """Get distance of rockets on the board
+
+        Args:
+            obj1 (Rocket): picked rocket on the board
+            obj2 (Rocket): -||-
+
+        Returns:    
+            float: result of the distance
+        """
+        ab = (obj1.altitude - obj2.altitude) ** 2
+        bc = (obj1.x - obj2.x) ** 2
         return "The distance between the rockets is: " + str(sqrt(ab + bc))
+
+    def get_amount_of_rockets(self):
+        """Getting amount of rockets on the board
+
+        Returns:
+            self: self.rockets in __init__
+        """
+        return len(self.rockets)
