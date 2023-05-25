@@ -1,18 +1,21 @@
 from random import randint
+from math import sqrt
 
 
 class Rocket:
 
-    def __init__(self, speed=1):
-        self.altitude = 0
+    def __init__(self, speed=1, altitude=0, x=0):
+        self.altitude = altitude
 
         self.speed = speed
+
+        self.x = x
 
     def move_up(self):
         self.altitude += self.speed
 
     def __str__(self):
-        return "Rocket is on height: " + str(self.altitude) + ", and her speed is: " + str(self.speed)
+        return "Rocket is on height: " + str(self.altitude)
 
 
 class RocketBoard:
@@ -26,3 +29,15 @@ class RocketBoard:
 
         for rocket in self.rockets:
             print(rocket)
+
+    def __getitem__(self, key):
+        return self.rockets[key]
+
+    def __setitem__(self, key, value):
+        self.rockets[key].altitude = value
+
+    @staticmethod
+    def get_distance(rocket1, rocket2):
+        ab = (rocket1.altitude - rocket2.altitude) ** 2
+        bc = (rocket1.x - rocket2.x) ** 2
+        return "The distance between the rockets is: " + str(sqrt(ab + bc))
