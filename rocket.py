@@ -4,6 +4,8 @@ from math import sqrt
 
 class Rocket:
 
+    nextID = 0
+
     def __init__(self, speed=1, altitude=0, x=0):
         self.altitude = altitude
 
@@ -13,9 +15,6 @@ class Rocket:
 
     def move_up(self):
         self.altitude += self.speed
-
-    def __str__(self):
-        return "Rocket is on height: " + str(self.altitude)
 
 
 class RocketBoard:
@@ -28,7 +27,11 @@ class RocketBoard:
             self.rockets[rocketIndexToMove].move_up()
 
         for rocket in self.rockets:
-            print(rocket)
+            self.rocket = rocket
+            self.id = Rocket.nextID
+            Rocket.nextID += 1
+            print("Rocket with ID:", self.id,
+                  "is on height: ", self.rocket.altitude)
 
     def __getitem__(self, key):
         return self.rockets[key]
